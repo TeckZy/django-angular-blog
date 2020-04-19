@@ -39,6 +39,19 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+PERSONAL_APPS = [
+
+    'app.root.apps.RootConfig',
+    'app.base.apps.BaseConfig',
+]
+EXTRA_APPS = [
+
+'rest_framework',
+    'django_filters',
+'rest_framework_swagger'
+]
+INSTALLED_APPS += PERSONAL_APPS +EXTRA_APPS
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -66,6 +79,25 @@ TEMPLATES = [
         },
     },
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+    ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ),
+    'DEFAULT_THROTTLE_CLASSES': (
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle'
+    ),
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '100000/day',
+        'user': '100000/day'
+    },
+ 'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+    'UPLOADED_FILES_USE_URL': False
+}
 
 WSGI_APPLICATION = 'blogyy.wsgi.application'
 
@@ -113,8 +145,11 @@ USE_L10N = True
 
 USE_TZ = True
 
+SITE_BASE_URL ='http://127.0.0.1:8000/ç'
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL_PREFIX = '/static/'
