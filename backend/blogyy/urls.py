@@ -20,6 +20,7 @@ from rest_framework.routers import DefaultRouter
 from rest_framework.authtoken import views
 from rest_framework_swagger.views import get_swagger_view
 
+from app.article.views import ArticleBaseInfoListViewset, ArticleDetailInfoListViewset
 from app.base.views import SiteInfoViewset, BloggerInfoViewset
 from  app.root.views import CategoryListViewset, SingleLevelCategoryListViewset, TagListViewset, \
     BannerListViewset, PostBaseInfoListViewset, PostLikeViewset, VerifyPostAuthViewset
@@ -39,6 +40,8 @@ router.register(r'postBaseInfos', PostBaseInfoListViewset, basename="postBaseInf
 router.register(r'verifyPostAuth', VerifyPostAuthViewset, basename="verifyPostAuth")
 router.register(r'likePost', PostLikeViewset, basename="likePost")
 
+router.register(r'post', ArticleBaseInfoListViewset, basename="articleBaseInfos")
+router.register(r'postDetail', ArticleDetailInfoListViewset, basename="articleDetailInfos")
 
 
 schema_view = get_swagger_view(title='Bloggy API')
@@ -47,4 +50,6 @@ urlpatterns = [
     url(r'^$', schema_view),
     path('admin/', admin.site.urls),
     url(r'^api/', include(router.urls)),
+
+    # url(r'^lol/',  )
 ]
