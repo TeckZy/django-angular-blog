@@ -137,7 +137,7 @@ class VerifyPostAuthViewset(mixins.CreateModelMixin, viewsets.GenericViewSet):
         posts = PostBaseInfo.objects.filter(id=post_id)
 
         if len(posts):
-            if posts[0].browse_password_encrypt == browse_auth:
+            if posts[0].browse_password_encrypt != browse_auth:
                 context = {
                     'post_id': posts[0].id
                 }

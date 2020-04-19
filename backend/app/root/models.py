@@ -2,7 +2,7 @@ import hashlib
 
 from django.db import models
 from django.conf import  settings
-
+import  django.apps
 __author__ = 'Akash Singh'
 __date__ = '2020-APR-18'
 
@@ -48,7 +48,7 @@ class Category(models.Model):
     name = models.CharField(max_length=30, default="", verbose_name="Category Name", help_text="Root Category Name")
     category_type = models.CharField(max_length=30, choices=CATEGORY_TYPE, verbose_name="Category Type ",help_text="Used to configure route ")
     desc = models.TextField(null=True, blank=True, verbose_name="decription", help_text="category description")
-    image = models.ImageField(upload_to="comment/category/image/%Y/%m", null=True, blank=True, help_text="图片")
+    image = models.ImageField(upload_to="comment/category/image/%Y/%m", null=True, blank=True)
     category_level = models.CharField(max_length=20, choices=CATEGORY_LEVEL, help_text="level")
     parent_category = models.ForeignKey("self", null=True, blank=True, verbose_name="parent", help_text="parent category",related_name="sub_category", on_delete=models.CASCADE)
 

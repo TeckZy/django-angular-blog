@@ -43,12 +43,15 @@ PERSONAL_APPS = [
 
     'app.root.apps.RootConfig',
     'app.base.apps.BaseConfig',
+'app.article.apps.ArticleConfig',
 ]
 EXTRA_APPS = [
 
 'rest_framework',
     'django_filters',
-'rest_framework_swagger'
+     'rest_framework_swagger',
+    'markdown',
+
 ]
 INSTALLED_APPS += PERSONAL_APPS +EXTRA_APPS
 
